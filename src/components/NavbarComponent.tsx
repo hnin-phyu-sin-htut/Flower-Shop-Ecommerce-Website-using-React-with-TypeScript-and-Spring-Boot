@@ -29,6 +29,10 @@ export default function NavbarComponent() {
               <Link to="/login"><span className="text-white bg-[#C21E56] border-2 border-transparent px-6 py-3 rounded transition duration-300 hover:bg-transparent hover:border-2 hover:border-[#C21E56] hover:text-[#C21E56]">Login</span>
               </Link>
             </li>
+            <li>
+              <Link to="/register"><span className="text-white bg-[#C21E56] border-2 border-transparent px-6 py-3 rounded transition duration-300 hover:bg-transparent hover:border-2 hover:border-[#C21E56] hover:text-[#C21E56]">Register</span>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
