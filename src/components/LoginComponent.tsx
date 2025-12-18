@@ -10,6 +10,7 @@ export default function LoginComponent() {
         password: ""
     });
 
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigator = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -27,7 +28,19 @@ export default function LoginComponent() {
                 navigator('/');
             }
             window.location.reload();
-        }).catch(err => console.log(err));
+        }).catch(
+            err => {
+                if(err.response){
+                    const message = err.response.data?.message || "";
+                    const status = err.response.status;
+                    if(status === 401 || message.toLowerCase().includes('invalid')) {
+                        setErrorMessage("Invalid username or password.");
+                    }
+                }else{
+                    setErrorMessage("Login failed! Please try again.")
+                }
+            }
+        );
     }
 
     return (
@@ -37,7 +50,11 @@ export default function LoginComponent() {
                     <h2 className="text-3xl font-extrabold text-center text-[#C21E56] mb-6">
                         Login
                     </h2>
-
+                    {
+                        errorMessage && (
+                            <p className="text-red-600 text-lg text-center mb-4">{errorMessage}</p>
+                        )
+                    }
                     <div className="flex flex-col gap-5">
                         <input
                             type="text"
@@ -66,10 +83,6 @@ export default function LoginComponent() {
                            transition-colors duration-300">
                             Login
                         </button>
-
-                        {
-
-                        }
                     </div>
 
                     <p className="text-center text-gray-500 mt-6 text-sm">

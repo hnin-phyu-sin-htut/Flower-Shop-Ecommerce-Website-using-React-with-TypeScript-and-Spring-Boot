@@ -6,7 +6,8 @@ import {useNavigate} from "react-router-dom";
 export default function RegisterComponent() {
 
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
-
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigator = useNavigate();
 
     const [registerDto, setRegisterDto] = useState<RegisterDto>({
@@ -25,14 +26,34 @@ export default function RegisterComponent() {
             ...registerDto,
             userType: isAdmin ? "ADMIN" : "CUSTOMER"
         };
-        console.log("Submitted: " + finalDto);
 
         register(finalDto)
             .then(res => {
-                console.log("API Success", res.data);
-                navigator('/login');
+                if(res.status === 200 || res.status === 201) {
+                    setSuccessMessage(`${finalDto.username} successfully registered.`);
+                    setRegisterDto({
+                        username: "",
+                        password: "",
+                        email: "",
+                        phone: "",
+                        address: "",
+                        userType: ""
+                    });
+                    setTimeout(() => {
+                        setSuccessMessage(null);
+                        navigator('/login');
+                    }, 2000);
+                }
             })
-            .catch(err => console.log("API Error", err));
+            .catch(err => {
+                if(err.response){
+                    if(err.response.status === 401){
+                        setErrorMessage("User already exists!");
+                    }
+                }else{
+                    setErrorMessage("Registration failed!");
+                }
+            });
         setRegisterDto(finalDto);
     };
 
@@ -43,7 +64,16 @@ export default function RegisterComponent() {
                     <h2 className="text-3xl font-extrabold text-center text-[#C21E56] mb-6">
                         Create Account
                     </h2>
-
+                    {
+                        successMessage && (
+                            <p className="text-green-600 text-lg text-center mb-4">{successMessage}</p>
+                        )
+                    }
+                    {
+                        errorMessage && (
+                            <p className="text-red-600 text-lg text-center mb-4">{errorMessage}</p>
+                        )
+                    }
                     <div className="flex flex-col gap-5">
                         <input
                             type="text"
@@ -86,7 +116,7 @@ export default function RegisterComponent() {
                         />
 
                         {
-                            isAdmin && (
+                            !isAdmin && (
                                 <input
                                     type="text"
                                     name="address"
