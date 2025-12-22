@@ -1,0 +1,9 @@
+{
+  "products" : [
+    { "id": 1, "name": "Red Rose", "price": 15.99, "quantity": 2, "image": "/images/red-rose.png" },
+    { "id": 2, "name": "White Lily", "price": 18.50, "quantity": 3, "image": "/images/white-lily.png" },
+    { "id": 3, "name": "Sunflower", "price": 12.00, "quantity": 2, "image": "/images/sunflower.png" },
+    { "id": 4, "name": "Purple Orchid", "price": 25.75, "quantity": 1, "image": "/images/purple-orchid.png" },
+    { "id": 5, "name": "Pink Tulip", "price": 14.20, "quantity": 2, "image": "/images/pink-tulip.png" }
+  ]
+}

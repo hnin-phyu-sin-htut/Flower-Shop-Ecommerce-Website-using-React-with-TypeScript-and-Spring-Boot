@@ -23,5 +23,8 @@ export const setToken = (token: string) =>
 export const setRoleName = (roleName: string)=>
     sessionStorage.setItem("roleName", roleName);
 
+export const getRoleName = () =>
+    sessionStorage.getItem("roleName");
+
 export const setLoggedInUserName = (username: string) =>
     sessionStorage.setItem("username", username);
