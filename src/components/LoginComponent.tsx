@@ -39,7 +39,7 @@ export default function LoginComponent() {
             }else if('ROLE_CUSTOMER' === roleName){
                 navigator('/');
             }
-            // window.location.reload();
+            window.location.reload();
         }).catch(
             err => {
                 if(err.response){
@@ -110,7 +110,7 @@ export default function LoginComponent() {
 
                     <p className="text-center text-gray-500 mt-6 text-sm">
                         Don't have an account?{" "}
-                        <a href="/register" className="text-[#C21E56] font-medium hover:underline">
+                        <a href="/register" className="text-[#C21E56] font-medium">
                             Register
                         </a>
                     </p>

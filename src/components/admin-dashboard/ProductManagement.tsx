@@ -7,7 +7,7 @@ export default function ProductManagement() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState<number>();
     const [quantity, setQuantity] = useState<number>();
-    const [categoryName, setCategoryName] = useState("");
+    const [categoryId, setCategoryId] = useState<string>("");
     const [image, setImage] = useState<File | "">("");
     const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -20,7 +20,7 @@ export default function ProductManagement() {
     const createProductHandler = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (!name || !price || !quantity || !categoryName || !image) {
+        if (!name || !price || !quantity || !categoryId || !image) {
             setMessage({ type: "error", text: "Please fill all fields." });
             return;
         }
@@ -29,7 +29,7 @@ export default function ProductManagement() {
         formData.append("name", name);
         formData.append("price", price.toString());
         formData.append("quantity", quantity.toString());
-        formData.append("categoryName", categoryName);
+        formData.append("categoryId", categoryId);
         formData.append("image", image);
 
         try {
@@ -37,7 +37,7 @@ export default function ProductManagement() {
             setName("");
             setPrice(undefined);
             setQuantity(undefined);
-            setCategoryName("");
+            setCategoryId("");
             setImage("");
             setMessage({ type: "success", text: "Product created successfully!" });
         } catch (err) {
@@ -103,13 +103,13 @@ export default function ProductManagement() {
                     <div>
                         <label className="block text-md font-medium text-gray-600 mb-2">Category</label>
                         <select
-                            value={categoryName ?? ""}
-                            onChange={(e) => setCategoryName(e.target.value)}
+                            value={categoryId ?? ""}
+                            onChange={e => setCategoryId(e.target.value)}
                             className="w-full text-black rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C21E56] focus:border-transparent shadow-sm bg-white"
                             required
                         >
                             <option value="">Select category</option>
-                            {categories.map((cat) => (
+                            {categories.map(cat => (
                                 <option key={cat.id} value={cat.id}>
                                     {cat.categoryName}
                                 </option>

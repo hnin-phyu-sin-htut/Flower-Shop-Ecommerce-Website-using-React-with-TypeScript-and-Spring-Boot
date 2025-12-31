@@ -57,7 +57,7 @@ export default function ProductComponent() {
                     >
                         <div className="w-full">
                             <img
-                                src={item.image ?? "/images/no-image.png"}
+                                src={item.image ? `http://localhost:8080${item.image}` : "/image/no-image.png"}
                                 alt={item.name}
                                 className="rounded-xl w-full h-48 object-contain"
                             />
@@ -70,7 +70,7 @@ export default function ProductComponent() {
                         <div className="flex flex-wrap flex-col sm:flex-row items-center sm:justify-around gap-2 w-full mb-2">
 
                             <p className="text-lg font-bold text-[#C21E56]">
-                                {item.price.toLocaleString() ?? 0} MMK
+                                {(item.price ?? 0).toLocaleString()} MMK
                             </p>
 
                             <button

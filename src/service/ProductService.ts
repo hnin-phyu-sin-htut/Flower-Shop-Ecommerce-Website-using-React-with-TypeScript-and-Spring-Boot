@@ -20,10 +20,9 @@ export const listAllProductsByCategory= (categoryName: string) =>
 
 export const createProduct = (product: FormData) =>
     axios.post<string>(`${PRODUCTS_BACKEND_URL}/create-product`, product, {
-        withCredentials: true,
         headers: {
-            "Content-Type": "multipart/form-data",
-        },
+            "Content-Type": "multipart/form-data"
+        }
     });
 
 export const createCategory= (categoryDto: CategoryDto) =>
@@ -39,7 +38,7 @@ export const getAllCategories = () =>
 export const editProduct = (courseEdit: ProductEdit, id:number) =>
     axios.put<ProductDto>(`${PRODUCTS_BACKEND_URL}/edit/${id}`, courseEdit);
 
-export const checkout = (items: { id: number; quantity: number }[], token: string) =>
+export const checkout = (items: { id: number; quantity: number; price: number; }[], token: string) =>
     axios.post(
         API_URL + "/checkout",
         items.map(item => ({

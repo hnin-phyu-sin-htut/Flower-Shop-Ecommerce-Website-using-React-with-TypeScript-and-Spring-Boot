@@ -57,7 +57,8 @@ export default function CartViewComponent() {
             const response = await checkout(
                 itemsWithSubTotal.map(item => ({
                     id: item.id,
-                    quantity: item.quantity
+                    quantity: item.quantity,
+                    price: item.price
                 })),
                 token
             );
@@ -120,7 +121,7 @@ export default function CartViewComponent() {
                                 <td className="text-center text-[#C21E56] py-2">{item.id}</td>
                                 <td className="flex justify-center py-2">
                                     <img
-                                        src={item.image}
+                                        src={item.image ? `http://localhost:8080${item.image}` : "/image/no-image.png"}
                                         alt={item.name}
                                         className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-contain border"
                                     />

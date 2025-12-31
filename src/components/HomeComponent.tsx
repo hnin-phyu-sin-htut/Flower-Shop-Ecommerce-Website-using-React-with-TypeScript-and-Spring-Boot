@@ -32,7 +32,7 @@ export default function HomeComponent() {
 
                             <div className="w-full">
                                 <img src={
-                                            flower.image && flower.image !== "" ? flower.image : "/images/no-image.png"
+                                            flower.image && flower.image !== "" ? flower.image : "/image/no-image.png"
                                         }
                                     alt={flower.name}
                                     className="rounded-xl w-full h-48 object-contain"

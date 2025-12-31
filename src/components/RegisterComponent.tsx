@@ -154,7 +154,7 @@ export default function RegisterComponent() {
 
                     <p className="text-center text-gray-500 mt-6 text-sm">
                         Already have an account?{" "}
-                        <a href="/login" className="text-[#C21E56] font-medium hover:underline">
+                        <a href="/login" className="text-[#C21E56] font-medium">
                             Login
                         </a>
                     </p>
