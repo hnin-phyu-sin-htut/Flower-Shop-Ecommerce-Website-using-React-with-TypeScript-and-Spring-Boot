@@ -1,10 +1,13 @@
 import { useState } from "react";
 import {Outlet, useNavigate} from "react-router-dom";
-import { FiBox, FiTag, FiUsers, FiLogOut } from "react-icons/fi";
-import ProductManagement from "./ProductManagement";
-import CategoryManagement from "./CategoryManagement";
-import CustomerManagement from "./CustomerManagement";
+import CreateProduct from "./CreateProduct.tsx";
+import CreateCategory from "./CreateCategory.tsx";
 import {logout} from "../../service/AuthService.ts";
+import EditProduct from "./EditProduct.tsx";
+import {TbCategoryPlus} from "react-icons/tb";
+import {IoFlowerSharp} from "react-icons/io5";
+import {RiEditFill} from "react-icons/ri";
+import {FiLogOut} from "react-icons/fi";
 
 const AdminDashboard: React.FC = () => {
     const navigate = useNavigate();
@@ -19,9 +22,9 @@ const AdminDashboard: React.FC = () => {
     );
 
     const tabs = [
-        { id: "categories", label: "Flower Categories", icon: FiTag },
-        { id: "products", label: "Flowers", icon: FiBox },
-        { id: "customers", label: "Customers", icon: FiUsers },
+        { id: "categories", label: "Flower Categories", icon: TbCategoryPlus },
+        { id: "products", label: "Flowers", icon: IoFlowerSharp },
+        { id: "edit-products", label: "Edit Flowers", icon: RiEditFill }
     ];
 
     const activeTabLabel = tabs.find((tab) => tab.id === activeTab)?.label;
@@ -72,9 +75,9 @@ const AdminDashboard: React.FC = () => {
 
                 <main className="p-6">
                     <div className="bg-white rounded-xl shadow p-6 min-h-[70vh]">
-                        {activeTab === "categories" && <CategoryManagement />}
-                        {activeTab === "products" && <ProductManagement />}
-                        {activeTab === "customers" && <CustomerManagement />}
+                        {activeTab === "categories" && <CreateCategory />}
+                        {activeTab === "products" && <CreateProduct />}
+                        {activeTab === "edit-products" && <EditProduct />}
                     </div>
                     <Outlet />
                 </main>

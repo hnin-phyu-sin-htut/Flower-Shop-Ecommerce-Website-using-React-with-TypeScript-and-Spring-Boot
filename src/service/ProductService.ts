@@ -2,7 +2,6 @@ import axios from "axios";
 import type {HomeFlower} from "../model/HomeFlower.ts";
 import type {CategoryDto} from "../model/CategoryDto.ts";
 import type {ProductDto} from "../model/ProductDto.ts";
-import type {ProductEdit} from "../model/ProductEdit.ts";
 
 const HOME_FLOWER_BACKEND_URL = "http://localhost:3000/home-flowers";
 const CATEGORY_BACKEND_URL = "http://localhost:8080/api/category";
@@ -35,8 +34,13 @@ export const createCategory= (categoryDto: CategoryDto) =>
 export const getAllCategories = () =>
     axios.get<CategoryDto[]>(`${CATEGORY_BACKEND_URL}/category-list`);
 
-export const editProduct = (courseEdit: ProductEdit, id:number) =>
-    axios.put<ProductDto>(`${PRODUCTS_BACKEND_URL}/edit/${id}`, courseEdit);
+export const editProduct = (formData: FormData, id:number) =>
+    axios.put<ProductDto>(`${PRODUCTS_BACKEND_URL}/edit/${id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+    });
+
+export const deleteProductById = (id: number) =>
+    axios.delete(`${PRODUCTS_BACKEND_URL}/delete/${id}`);
 
 export const checkout = (items: { id: number; quantity: number; price: number; }[], token: string) =>
     axios.post(

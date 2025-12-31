@@ -2,7 +2,7 @@ import { type FormEvent, useEffect, useState } from "react";
 import type { CategoryDto } from "../../model/CategoryDto.ts";
 import { getAllCategories, createProduct } from "../../service/ProductService.ts";
 
-export default function ProductManagement() {
+export default function CreateProduct() {
     const [categories, setCategories] = useState<CategoryDto[]>([]);
     const [name, setName] = useState("");
     const [price, setPrice] = useState<number>();
@@ -39,10 +39,10 @@ export default function ProductManagement() {
             setQuantity(undefined);
             setCategoryId("");
             setImage("");
-            setMessage({ type: "success", text: "Product created successfully!" });
+            setMessage({ type: "success", text: "Flower created successfully!" });
         } catch (err) {
             console.error(err);
-            setMessage({ type: "error", text: "Failed to create product." });
+            setMessage({ type: "error", text: "Failed to create flower." });
         }
 
         setTimeout(() => setMessage(null), 3000);
@@ -50,8 +50,8 @@ export default function ProductManagement() {
 
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8">
-                <h2 className="text-3xl font-bold text-[#C21E56] mb-8 text-center">Create Product</h2>
+            <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border-2 border-[#F4C2C2] p-8 mt-8">
+                <h2 className="text-3xl font-bold text-[#C21E56] mb-8 text-center">Create Flower</h2>
 
                 {message && (
                     <div
@@ -65,13 +65,13 @@ export default function ProductManagement() {
 
                 <form onSubmit={createProductHandler} className="space-y-5">
                     <div>
-                        <label className="block text-md font-medium text-gray-600 mb-2">Product Name</label>
+                        <label className="block text-md font-medium text-gray-600 mb-2">Flower Name</label>
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="w-full text-black rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C21E56] focus:border-transparent shadow-sm"
-                            placeholder="Enter product name"
+                            placeholder="Enter name"
                             required
                         />
                     </div>
@@ -118,7 +118,7 @@ export default function ProductManagement() {
                     </div>
 
                     <div>
-                        <label className="block text-md font-medium text-gray-600 mb-2">Product Image</label>
+                        <label className="block text-md font-medium text-gray-600 mb-2">Flower Image</label>
                         <input
                             type="file"
                             accept="image/*"
@@ -132,9 +132,8 @@ export default function ProductManagement() {
                         type="submit"
                         className="w-full p-3 bg-[#C21E56] text-white font-semibold rounded-full shadow-lg
                        hover:bg-white hover:text-[#C21E56] hover:border hover:border-[#C21E56]
-                       transition-colors duration-300 cursor-pointer"
-                    >
-                        Add Product
+                       transition-colors duration-300 cursor-pointer">
+                        Create Flower
                     </button>
                 </form>
             </div>
