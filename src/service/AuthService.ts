@@ -2,13 +2,13 @@ import type {RegisterDto} from "../model/RegisterDto.ts";
 import axios from "axios";
 import type {LoginDto} from "../model/LoginDto.ts";
 
-const FLOWER_SHOP_BACKEND_URL = "http://localhost:8080/api/auth";
+const FLOWER_SHOP_BACKEND_URL = "http://localhost:2024/Flower-Shop-Ecommerce-Website-Backend/api/auth";
 
 export const register = (registerDto: RegisterDto) =>
-    axios.post(FLOWER_SHOP_BACKEND_URL + "/register", registerDto);
+    axios.post(FLOWER_SHOP_BACKEND_URL + "/register.php", registerDto);
 
 export const login = (loginDto: LoginDto) =>
-    axios.post(FLOWER_SHOP_BACKEND_URL + "/login", loginDto);
+    axios.post(FLOWER_SHOP_BACKEND_URL + "/login.php", loginDto);
 
 export const logout =() =>{
     sessionStorage.removeItem("token");
